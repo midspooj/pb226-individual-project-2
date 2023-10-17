@@ -1,4 +1,3 @@
-use csv;
 use reqwest::blocking::Client;
 use rusqlite::{params, Connection, Result};
 use std::fs;
