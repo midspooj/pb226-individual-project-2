@@ -50,3 +50,7 @@ DELETE FROM ServeTimesDB WHERE id=3;
 SELECT * FROM ServeTimesDB WHERE id = 9;
 ```
 
+```sql
+SELECT * FROM ServeTimesDB WHERE server = 'John Doe';
+```
+
