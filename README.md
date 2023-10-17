@@ -4,6 +4,9 @@
 
 This project provides a set of functions for performing ETL operations on a dataset and querying a SQLite database. I use Github Copilot to convert my previous Python code into Rust, but modify it as it isn't accurate and doesn't do error handling correctly at times.
 
+## Simple Vizualization of Process
+![ETLQ](etl_flow.svg)
+
 ### Components:
 
 1. **Data Extraction:**

@@ -88,11 +88,35 @@ pub fn query(query: &str) -> Result<()> {
     if query.trim().to_lowercase().starts_with("select") {
         let mut stmt = conn.prepare(query)?;
         let results = stmt.query_map(params![], |row| {
-            row.get::<usize, String>(0) // Assuming you're expecting a String
+            Ok((
+                row.get::<usize, i32>(0)?,
+                row.get::<usize, String>(1)?,
+                row.get::<usize, i32>(2)?,
+                row.get::<usize, String>(3)?,
+                row.get::<usize, String>(4)?,
+                row.get::<usize, String>(5)?,
+                row.get::<usize, i32>(6)?,
+                row.get::<usize, String>(7)?,
+            ))
         })?;
+
         for result in results {
             match result {
-                Ok(value) => println!("Result: {:?}", value),
+                Ok((
+                    id,
+                    server,
+                    seconds_before_next_point,
+                    day,
+                    opponent,
+                    game_score,
+                    sets,
+                    game,
+                )) => {
+                    println!(
+                        "Result: id={}, server={}, seconds={}, day={}, opponent={}, score={}, sets={}, game={}",
+                        id, server, seconds_before_next_point, day, opponent, game_score, sets, game
+                    );
+                }
                 Err(e) => eprintln!("Error in row: {:?}", e),
             }
         }
